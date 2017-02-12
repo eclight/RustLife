@@ -1,0 +1,8 @@
+[package]
+name = "life-rust"
+version = "0.1.0"
+authors = ["eclight"]
+
+[dependencies]
+sdl2 = "0.13.0"
+rand = "0.3.13"
