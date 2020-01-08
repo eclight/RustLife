@@ -21,13 +21,11 @@ impl CellState {
 
         for p in parents {
             match p {
-                &CellState { color: Color::RGB(cr, cb, cg), .. } => {
+                &CellState { color: Color { r: cr, b: cb, g: cg, a: _ } , .. } => {
                     r += cr as i32;
                     b += cb as i32;
                     g += cg as i32;
                 }
-
-                _ => (),
             }
         }
 

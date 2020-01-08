@@ -3,8 +3,8 @@ use std::mem;
 use rand;
 use rand::Rng;
 use sdl2::pixels::Color;
-use color;
-use cell_state::CellState;
+use crate::color;
+use crate::cell_state::CellState;
 
 #[derive(Copy, Clone, Debug)]
 pub struct CellIndex {

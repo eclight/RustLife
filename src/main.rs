@@ -22,7 +22,8 @@ fn main() {
         Err(err) => panic!("failed to create window: {}", err),
     };
 
-    let mut renderer = match window.renderer().build() {
+
+    let mut renderer = match window.into_canvas().build() {
         Ok(renderer) => renderer,
         Err(err) => panic!("failed to create renderer: {}", err),
     };
@@ -70,24 +71,24 @@ fn main() {
                     if draw_mode == MODE_NORMAL {
                         if state.alive {
                             renderer.set_draw_color(sdl2::pixels::Color::RGB(255, 255, 255));
-                            renderer.draw_rect(Rect::new_unwrap(col * SIDE as i32,
-                                                                row * SIDE as i32,
-                                                                SIDE,
-                                                                SIDE));
+                            renderer.draw_rect(Rect::new(col * SIDE as i32,
+                                                         row * SIDE as i32,
+                                                         SIDE,
+                                                         SIDE)).expect("Draw operation failed");
                         }
                     } else if draw_mode == MODE_COLOR {
                         if state.alive {
                             renderer.set_draw_color(state.color);
-                            renderer.fill_rect(Rect::new_unwrap(col * SIDE as i32,
+                            renderer.fill_rect(Rect::new(col * SIDE as i32,
                                                                 row * SIDE as i32,
                                                                 SIDE,
-                                                                SIDE));
+                                                                SIDE)).expect("Draw operation failed");
                         } else {
                             renderer.set_draw_color(state.color);
-                            renderer.fill_rect(Rect::new_unwrap(col * SIDE as i32,
+                            renderer.fill_rect(Rect::new(col * SIDE as i32,
                                                                 row * SIDE as i32,
                                                                 SIDE,
-                                                                SIDE));
+                                                                SIDE)).expect("Draw operation failed");
                         }
                     }
                 }

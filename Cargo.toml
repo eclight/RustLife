@@ -2,7 +2,9 @@
 name = "life-rust"
 version = "0.1.0"
 authors = ["eclight"]
+edition = "2018"
+build = "build.rs"
 
 [dependencies]
-sdl2 = "0.13.0"
+sdl2 = "0.32.2"
 rand = "0.3.13"
