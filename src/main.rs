@@ -13,20 +13,36 @@ use world::{CellIndex, World};
 const MODE_NORMAL: i32 = 0;
 const MODE_COLOR: i32 = 1;
 
+fn choose_driver() -> u32 {
+    for (index, item) in sdl2::render::drivers().enumerate() {
+        if item.name == "direct3d" {
+            return index as u32;
+        }
+    }
+
+    0
+}
+
 fn main() {
+
     let ctx = sdl2::init().unwrap();
     let video_ctx = ctx.video().unwrap();
 
-    let window = match video_ctx.window("Life", 800, 600).position_centered().opengl().build() {
+    let window = match video_ctx.window("Life", 800, 600).position_centered().build() {
         Ok(window) => window,
         Err(err) => panic!("failed to create window: {}", err),
     };
 
 
-    let mut renderer = match window.into_canvas().build() {
+    let mut renderer = match window.into_canvas()
+                                   .index(choose_driver())
+                                   .accelerated()
+                                   .build()
+    {
         Ok(renderer) => renderer,
         Err(err) => panic!("failed to create renderer: {}", err),
     };
+
 
     const SIDE: u32 = 4;
     let mut events = ctx.event_pump().unwrap();
