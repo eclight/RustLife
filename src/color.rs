@@ -4,9 +4,9 @@ use sdl2::pixels::Color;
 
 pub fn random_color_hsv() -> Color {
     let mut rng = rand::thread_rng();
-    let h = rng.gen_range(170, 240);
-    let s = rng.gen_range(0, 100);
-    let v = rng.gen_range(60, 101);
+    let h = rng.gen_range(0, 360);
+    let s = rng.gen_range(0, 101);
+    let v = rng.gen_range(50, 101);
 
     hsv_to_rgb(h, s, v)
 }
