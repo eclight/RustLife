@@ -1,8 +1,5 @@
 #![windows_subsystem = "windows"]
 
-extern crate sdl2;
-extern crate rand;
-
 mod world;
 mod color;
 mod cell_state;
@@ -46,7 +43,7 @@ fn main() {
     };
 
 
-    const SIDE: u32 = 4;
+    const CELL_SIZE: u32 = 4;
     let mut events = ctx.event_pump().unwrap();
     let mut timer = ctx.timer().unwrap();
     let mut last_time = timer.ticks();
@@ -89,24 +86,24 @@ fn main() {
                     if draw_mode == MODE_NORMAL {
                         if state.alive {
                             renderer.set_draw_color(sdl2::pixels::Color::RGB(255, 255, 255));
-                            renderer.draw_rect(Rect::new(col * SIDE as i32,
-                                                         row * SIDE as i32,
-                                                         SIDE,
-                                                         SIDE)).expect("Draw operation failed");
+                            renderer.draw_rect(Rect::new(col * CELL_SIZE as i32,
+                                                         row * CELL_SIZE as i32,
+                                                         CELL_SIZE,
+                                                         CELL_SIZE)).expect("Draw operation failed");
                         }
                     } else if draw_mode == MODE_COLOR {
                         if state.alive {
                             renderer.set_draw_color(state.color);
-                            renderer.fill_rect(Rect::new(col * SIDE as i32,
-                                                                row * SIDE as i32,
-                                                                SIDE,
-                                                                SIDE)).expect("Draw operation failed");
+                            renderer.fill_rect(Rect::new(col * CELL_SIZE as i32,
+                                                         row * CELL_SIZE as i32,
+                                                         CELL_SIZE,
+                                                         CELL_SIZE)).expect("Draw operation failed");
                         } else {
                             renderer.set_draw_color(state.color);
-                            renderer.fill_rect(Rect::new(col * SIDE as i32,
-                                                                row * SIDE as i32,
-                                                                SIDE,
-                                                                SIDE)).expect("Draw operation failed");
+                            renderer.fill_rect(Rect::new(col * CELL_SIZE as i32,
+                                                         row * CELL_SIZE as i32,
+                                                         CELL_SIZE,
+                                                         CELL_SIZE)).expect("Draw operation failed");
                         }
                     }
                 }
